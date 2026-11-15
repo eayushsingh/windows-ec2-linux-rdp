@@ -1,0 +1,41 @@
+# AWS and SSH / RDP Key Pairs & Credentials
+*.pem
+*.cer
+*.crt
+*.key
+*.pub
+*.ppk
+*.p12
+*.pfx
+*.rdp
+credentials
+*.credentials
+.aws/
+
+# Environment and Secret Files
+.env
+.env.*
+!.env.example
+
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Editor & IDE Configs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary & Log Files
+*.log
+tmp/
+temp/
+

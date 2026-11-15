@@ -1,0 +1,47 @@
+flowchart LR
+    %% Architecture Diagram: Windows EC2 Deployment & Linux-to-Windows RDP Connection
+
+    subgraph LOCAL_HOST["Local Workstation Environment"]
+        MAC["Local MacBook<br/>(macOS Host)"]
+        
+        subgraph VM["Virtualization Layer"]
+            UBUNTU["Ubuntu Linux Virtual Machine"]
+            REMMINA["Remmina RDP Client<br/>(GUI Remote Desktop)"]
+        end
+    end
+
+    subgraph WAN["Public Network"]
+        INTERNET["Internet Gateway / Transit"]
+    end
+
+    subgraph AWS_CLOUD["Amazon Web Services (AWS Cloud)"]
+        subgraph VPC["Virtual Private Cloud (VPC)"]
+            subgraph SG["AWS Security Group (Firewall)"]
+                RULES["Inbound Rule:<br/>Type: RDP<br/>Protocol: TCP<br/>Port: 3389<br/>Source: User Public IP /32"]
+            end
+            
+            subgraph EC2["Amazon EC2 Instance"]
+                WIN_SERVER["Windows Server OS<br/>(EC2 Instance)"]
+                WIN_DESKTOP["Windows Server Desktop<br/>(RDP Service / Port 3389)"]
+            end
+        end
+    end
+
+    MAC -->|"Host Hypervisor"| UBUNTU
+    UBUNTU -->|"Runs Application"| REMMINA
+    REMMINA -->|"Encrypted RDP Traffic<br/>TCP Port 3389"| INTERNET
+    INTERNET -->|"Inbound Traffic Check<br/>Must match User Public IP"| RULES
+    RULES -->|"Allow Inbound TCP:3389"| WIN_SERVER
+    WIN_SERVER -->|"Renders Session"| WIN_DESKTOP
+
+    %% Styling
+    classDef client fill:#e1f5fe,stroke:#0288d1,stroke-width:2px,color:#01579b;
+    classDef transit fill:#fff3e0,stroke:#f57c00,stroke-width:2px,color:#e65100;
+    classDef aws fill:#e8f5e9,stroke:#388e3c,stroke-width:2px,color:#1b5e20;
+    classDef security fill:#ffebee,stroke:#d32f2f,stroke-width:2px,color:#b71c1c;
+
+    class MAC,UBUNTU,REMMINA client;
+    class INTERNET transit;
+    class WIN_SERVER,WIN_DESKTOP aws;
+    class RULES security;
+
