@@ -190,18 +190,21 @@ sudo apt install -y remmina remmina-plugin-rdp
 
 ## Expected Results & Verification
 
-When the configuration is successfully executed, the following results are observed:
+When the configuration is successfully executed, the following milestones are verified:
 
-1. **AWS Infrastructure**:
-   * EC2 instance enters **Running** state with **2/2 status checks passed**.
-   * Security Group shows single ingress rule on TCP 3389 restricted to `<LOCAL_IP>/32`.
-2. **Network Handshake**:
-   * Running `nc -zvw5 <PUBLIC_IP> 3389` on Ubuntu returns `Connection succeeded`.
-3. **Graphical Session**:
-   * Remmina opens an interactive remote desktop session displaying the **Windows Server Desktop**.
-   * **Server Manager** loads automatically, verifying full administrative access.
+1. **Security Group Ingress Filtering**:
+   * Security Group allows inbound TCP port `3389` restricted strictly to the administrator's public IP address.
+   <br/><img src="screenshots/01-security-group-inbound-rules.png" alt="Security Group Inbound Rules" width="700"/>
 
-*(Refer to [screenshots/README.md](screenshots/README.md) for screenshot templates and evidence submission guides).*
+2. **AWS EC2 Provisioning & Health Checks**:
+   * EC2 instance (`t3.micro`) enters **Running** state with active status checks.
+   <br/><img src="screenshots/03-ec2-instance-running.png" alt="EC2 Instance Running State" width="700"/>
+
+3. **Active Cross-Platform RDP Session**:
+   * Remmina client establishes an authenticated, low-latency graphical session to the Windows Server desktop from Ubuntu Linux.
+   <br/><img src="screenshots/04-ubuntu-remmina-windows-connected.png" alt="Ubuntu Remmina Connected to Windows Server" width="700"/>
+
+*(See all raw captures and evidence in [screenshots/README.md](screenshots/README.md)).*
 
 ---
 

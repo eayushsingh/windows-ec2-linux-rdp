@@ -1,40 +1,29 @@
-# Project Screenshots & Evidence Guide
+# Lab Evidence & Visual Verification
 
-This directory is designated for visual verification artifacts captured during the hands-on lab: **Windows EC2 Deployment & Linux-to-Windows RDP Connection**.
-
-To maintain a clean and professional portfolio repository, adhere to the naming guidelines and recommended captures below.
+This directory contains real-world visual verification captures from the hands-on deployment of the **Windows EC2 Deployment & Linux-to-Windows RDP Connection** project.
 
 ---
 
-## Recommended Screenshot Checklist
+## Verified Lab Screenshots
 
-| File Name | Description | Verification Purpose |
-|:---|:---|:---|
-| `01-ec2-instance-running.png` | AWS Management Console showing the Windows EC2 instance in **Running** state with **2/2 status checks passed**. | Proves successful provisioning and initial boot. |
-| `02-security-group-rules.png` | Inbound rules of the associated Security Group showing port `3389` restricted to your IP (`<YOUR_IP>/32`). | Proves adherence to the Principle of Least Privilege. |
-| `03-get-windows-password.png` | The AWS Console **Get Windows Password** decryption window with the RSA key uploaded. | Documents the key pair decryption workflow (mask sensitive strings). |
-| `04-ubuntu-remmina-config.png` | Remmina connection profile configuration screen on Ubuntu Linux (Server IP, Username: `Administrator`). | Shows proper client-side parameter setup. |
-| `05-rdp-cert-verification.png` | Certificate authenticity prompt in Remmina showing the Windows Server certificate footprint. | Documents TLS/SSL trust handshake. |
-| `06-windows-desktop-connected.png` | Active Windows Server Desktop rendered within Remmina on Ubuntu, ideally showing Server Manager or system info. | Final proof of end-to-end connectivity. |
+### 1. Inbound Security Group Hardening
+Shows the stateful firewall configuration allowing incoming RDP (TCP port 3389) restricted exclusively to the administrator's public IP address.
+![Security Group Inbound Rules](01-security-group-inbound-rules.png)
 
 ---
 
-## Screenshot Standards
-
-1. **Redact Sensitive Information**:
-   - Mask or blur your actual public IP address (replace with placeholder notation like `203.0.113.25` or `REDACTED`).
-   - Mask AWS Account Numbers in the top navigation bar.
-   - Never show unencrypted private key strings or plaintext passwords.
-2. **Format**: Save captures in `.png` format for crisp text clarity.
-3. **Dimensions**: Standardize display resolutions where practical (e.g., 1080p) to avoid distorted scaling.
+### 2. EC2 Instance Launch Initialization
+Confirmation banner in AWS Management Console verifying the successful provisioning request of the Windows Server instance (`t3.micro`).
+![Launch Instance Success](02-launch-instance-success.png)
 
 ---
 
-## Referencing Screenshots in Documentation
+### 3. EC2 Instance in Running State
+AWS EC2 Management Console verifying the provisioned Windows Server instance in **Running** state within the availability zone.
+![EC2 Instance Running](03-ec2-instance-running.png)
 
-Once you add your screenshots to this directory, link them in `README.md` or `docs/setup-guide.md` using standard relative Markdown syntax:
+---
 
-```markdown
-![Windows Desktop via Remmina](screenshots/06-windows-desktop-connected.png)
-```
-
+### 4. Cross-Platform RDP Session Verified (Ubuntu Linux to Windows Server)
+Active Remmina remote desktop session running on the Ubuntu Linux desktop, rendering the **Windows Server 2022 Datacenter** environment (`winver` dialog verifying license to `EC2 Amazon.com`).
+![Ubuntu Remmina Connected to Windows Desktop](04-ubuntu-remmina-windows-connected.png)

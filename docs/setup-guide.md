@@ -95,6 +95,8 @@ In the **Network settings** section of the launch wizard:
 |:---|:---|:---|:---|:---|:---|
 | **RDP** | TCP | `3389` | **My IP** | `<YOUR_PUBLIC_IP>/32` | Administrative RDP access from home/office network |
 
+![Inbound Security Group Rules](../screenshots/01-security-group-inbound-rules.png)
+
 > [!WARNING]
 > Never select **Anywhere-IPv4 (`0.0.0.0/0`)** for port 3389. Exposing RDP to the global Internet makes your server a target for brute-force attacks and automated credential stuffing.
 
@@ -108,6 +110,8 @@ In the **Network settings** section of the launch wizard:
 
 1. In the EC2 Console, select **Instances** and monitor your newly created instance.
 2. Wait until **Instance State** is **Running** and **Status check** displays **2/2 checks passed** (this typically takes 3 to 5 minutes for Windows initialization).
+
+![EC2 Instance Running State](../screenshots/03-ec2-instance-running.png)
 3. Select the instance checkbox, click the **Connect** button at the top right.
 4. Navigate to the **RDP client** tab.
 5. Take note of the following parameters:
@@ -174,6 +178,8 @@ remmina &
 5. **Desktop Session Initialization**:
    * The Windows desktop interface will load inside Remmina.
    * The **Server Manager Dashboard** will appear automatically, confirming an active, authenticated administrative session.
+
+![Windows Server Desktop Connected via Remmina](../screenshots/04-ubuntu-remmina-windows-connected.png)
 
 ---
 
